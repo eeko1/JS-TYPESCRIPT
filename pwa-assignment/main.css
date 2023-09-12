@@ -1,0 +1,13 @@
+@font-face {
+  font-family: 'RobotoCondensed-Bold';
+  src: url('RobotoCondensed-Bold.ttf') format('truetype');
+}
+
+body {
+  text-align: center;
+}
+
+img {
+  height: 500px;
+  width: 50%;
+}
