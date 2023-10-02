@@ -11,10 +11,10 @@ modal.addEventListener('click', () => {
   modal.close();
 });
 
-const calculateDistance = (x1, y1, x2, y2) =>
+const calculateDistance = (x1: number, y1: number, x2: number, y2: number) =>
   Math.sqrt((x2 - x1) ** 2 + (y2 - y1) ** 2);
 
-const createTable = (restaurants) => {
+const createTable = (restaurants: any[]) => {
   const table = document.querySelector('table');
   table.innerHTML = '';
   restaurants.forEach((restaurant) => {
@@ -33,9 +33,8 @@ const createTable = (restaurants) => {
         modal.innerHTML = '';
 
         // fetch menu
-        const menu = await fetchData<>(
-          apiUrl + `/restaurants/daily/${restaurant._id}/fi`
-        );
+        const menu = await fetchData(
+        apiUrl + `/restaurants/daily/${restaurant._id}/fi`);
         console.log(menu);
 
         const menuHtml = restaurantModal(restaurant, menu);
@@ -50,14 +49,14 @@ const createTable = (restaurants) => {
   });
 };
 
-const error = (err) => {
+const error = (err: GeolocationPositionError) => {
   console.warn(`ERROR(${err.code}): ${err.message}`);
 };
 
-const success = async (pos) => {
+const success = async (pos: GeolocationPosition) => {
   try {
     const crd = pos.coords;
-    const restaurants = await fetchData <Restaurant[]>(apiUrl + '/restaurants');
+    const restaurants = await fetchData<Restaurant[]>(apiUrl + '/restaurants');
     console.log(restaurants);
     restaurants.sort((a, b) => {
       const x1 = crd.latitude;
